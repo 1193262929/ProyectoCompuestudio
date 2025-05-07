@@ -1,4 +1,3 @@
-   
 // CONEXION A MONGODB
 const mongoose = require('mongoose');
 
@@ -10,3 +9,8 @@ const dbconnect = mongoose.connect('mongodb://jorgesoto:1193262929@localhost:270
 // EXPORTAMOS LA CONEXION A LA BASE DE DATOS
 module.exports = dbconnect;
 
+
+// PARA SEGUIR TRABAJANDO Y SUBIR LOS CAMBIOS QUE SE HAGAN
+// git add .
+// git commit -m "Descripción de los cambios"
+// git push origin main
