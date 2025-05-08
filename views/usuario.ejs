@@ -1,0 +1,33 @@
+<!-- UTILIZAMOS "include" PARA INCLUIR LA CABECERA DE LA PAGINA -->
+<%- include("template/cabecera", {tituloweb: 'Pagina de inicio'}) %>
+
+    <div class="container">
+                <!-- TABLA PARA MOSTRAR LOS DATOS DE LA BASE DE DATOS -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">EMAIL</th>
+                        <th scope="col">ESTADO</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                <% if (arrayUsuarios.length > 0) { %>
+                <% arrayUsuarios.forEach(element => { %>
+                      <tr>
+                        <th scope="row"><%= element.id %></th>
+                        <td><%= element.username %></td>
+                        <td><%= element.email %></td>
+                        <td><%= element.status %></td>
+                      </tr>
+                <% }) %>
+                <% } %>
+                    </tbody>
+                  </table>
+           
+
+    </div>
+
+<!-- INCLUIMOS EL FOOTER POR MEDIO DE "include"  -->
+<%- include("template/footer") %>
