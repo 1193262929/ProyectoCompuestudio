@@ -15,4 +15,22 @@ router.get('/', async (req, res)=>{
     }
 })
 
+// RUTA DONDE SE VAN A CREAR NUEVOS DOCUMENTOS--> NUEVOS REGISTROS DE DATOS
+// router.get('/crear', (req, res)=>{
+//     res.render('crear')
+// })
+
+router.post('/', async (req, res)=>{
+    const body = req.body
+    try{
+        // const usuarioDB = new Usuario(body)
+        // await usuarioDB.save()
+        await Usuario.create(body)
+        res.redirect('/usuario')
+
+    }catch (error) {
+        console.log(error)
+    }
+})
+
 module.exports = router;

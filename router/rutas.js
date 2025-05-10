@@ -9,9 +9,14 @@ router.get('/',(req, res) =>{
     res.render("index", {titulo: "Titulo dinamico"})
 })
 
-router.get('/registrar',(req, res) =>{
-    res.render("tareas", {TituloTareas: "Tus tareas"})
+// router.get('/registrar',(req, res) =>{
+//     res.render("tareas", {TituloTareas: "Tus tareas"})
+// })
+
+router.get('/crear',(req, res) =>{
+    res.render("crear", {tituloCrear: "CREAR NUEVA TAREA"})
 })
+
 
 
 module.exports = router;

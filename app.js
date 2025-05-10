@@ -1,7 +1,10 @@
 // IMPORTAMOS "express" PARA CREAR EL SERVIDOR
 const express = require('express');
-//const dbconnect = require('./config');
+const bodyParser = require('body-parser')
 const app = express();
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 const PORT = 3001;
 
