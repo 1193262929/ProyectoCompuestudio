@@ -1,8 +1,17 @@
 <!-- UTILIZAMOS "include" PARA INCLUIR LA CABECERA DE LA PAGINA -->
-<%- include("template/cabecera", {tituloweb: 'Pagina de inicio'}) %>
+<%- include("template/cabecera", {tituloweb: 'Pagina de inicio' }) %>
 
 
-    <h1 class="text-success text-center">Titulo del sitio web pagina principal</h1>
-    <h2 class="text-danger text-center"><%= titulo %></h2>
-<!-- INCLUIMOS EL FOOTER POR MEDIO DE "include"  -->
-<%- include("template/footer") %>
+    <div class="container border border-secondary rounded shadow p-4 my-5 bg-white w-50">
+        <h1 class="text-success text-center my-3">TU GESTOR DE TAREAS</h1>
+        <div class="border-bottom border-2 border-secondary w-80 my-2"></div>
+        <h2 class="text-muted text-center my-3">Organiza, prioriza y logra más.</h2>
+        <p class="text-justify p">En un mundo lleno de distracciones y responsabilidades, tu tiempo es tu activo más valioso. Con <b>TU GESTOR DE TAREAS</b>, tomar el control de tu productividad nunca ha sido tan fácil. Prioriza lo importante,
+            gestiona tus tareas con eficiencia y alcanza tus objetivos sin esfuerzo. Diseñado para optimizar tu flujo de
+            trabajo, nuestro gestor de tareas transforma pendientes en logros, permitiéndote enfocarte en lo que
+            realmente importa.</p>
+    </div>
+
+
+    <!-- INCLUIMOS EL FOOTER POR MEDIO DE "include"  -->
+    <%- include("template/footer") %>

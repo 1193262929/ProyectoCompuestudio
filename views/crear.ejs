@@ -1,11 +1,11 @@
 <%- include("template/cabecera", {tituloweb: 'Crear nuevo registro'}) %>
-    <div class="container">
+    <div class="container border border-secondary rounded shadow p-4 my-5 bg-white w-50">
         <h2><%= tituloCrear %></h2>
         <form action="/usuario" method="post">
-            <input type="text" placeholder="Agregar nombre" class="form-control my-2" name="username">
-            <input type="number" placeholder="Agregar edad" class="form-control my-2" name="age">
-            <input type="text" placeholder="Agregar email" class="form-control my-2" name="email">
-            <input type="text" placeholder="Agregar estado" class="form-control my-2" name="status">
+            <input type="text" placeholder="Agregar tarea" class="form-control my-2" name="tarea">
+            <input type="text" placeholder="Agregar area" class="form-control my-2" name="area">
+            <input type="text" placeholder="Agregar descripcion" class="form-control my-2" name="descripcion">
+            <input type="text" placeholder="Agregar estado" class="form-control my-2" name="estado">
             <button class="btn btn-success my-2">Agregar</button>
         </form>
     </div>

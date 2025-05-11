@@ -11,7 +11,7 @@ const PORT = 3001;
 const mongoose = require('mongoose');
 
 //CONEXION A LA BASE DE DATOS
-const dbconnect = mongoose.connect('mongodb://jorgesoto:1193262929@localhost:27017/BaseDeDatos?authSource=admin')
+const dbconnect = mongoose.connect('mongodb://jorgesoto:1193262929@localhost:27017/BD_Tareas?authSource=admin')
     .then(()=> console.log("Base de datos conectada"))
     .catch(e => console.log(e))
 

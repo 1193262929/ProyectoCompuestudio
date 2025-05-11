@@ -6,7 +6,7 @@ const router = express.Router();
 
 // RESPUESTA DEL SERVIDOR SI EL CLIENTE DESEA INGRESAR A LA PAGINA PRINCIPAL
 router.get('/',(req, res) =>{
-    res.render("index", {titulo: "Titulo dinamico"})
+    res.render("index")
 })
 
 // router.get('/registrar',(req, res) =>{
