@@ -1,5 +1,5 @@
 <!-- UTILIZAMOS "include" PARA INCLUIR LA CABECERA DE LA PAGINA -->
-<%- include("template/cabecera", {tituloweb: 'Pagina de inicio'}) %>
+<%- include("template/cabecera", {tituloweb: 'Pagina de tareas'}) %>
     <div class="container">
         <h1 class="text-center my-3">MIS TAREAS</h1>
                 <a href="/crear" class="btn btn-success btn-block my-4">Agregar nueva tarea</a>
@@ -12,9 +12,7 @@
                         <th scope="col">AREA</th>
                         <th scope="col">DESCRIPCION</th>
                         <th scope="col">ESTADO</th>
-                        <!-- <th scope="col">NAME</th>
-                        <th scope="col">EMAIL</th>
-                        <th scope="col">ESTADO</th> -->
+                        <th scope="col">ACCION</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -26,9 +24,7 @@
                         <td><%= element.area %></td>
                         <td><%= element.descripcion %></td>
                         <td><%= element.estado %></td>
-                        <!-- <td><%= element.username %></td>
-                        <td><%= element.email %></td>
-                        <td><%= element.status %></td> -->
+                        <td><a href="usuario/<%= element.id %>" class="btn btn-warning btn-sm">Editar</a></td>
                       </tr>
                 <% }) %>
                 <% } %>

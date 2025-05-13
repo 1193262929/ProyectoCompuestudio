@@ -1,0 +1,35 @@
+<%- include("template/cabecera", {tituloweb: 'Detalle tarea'}) %>
+    <div class="container border border-secondary rounded shadow p-4 my-5 bg-white w-70">
+        <h2>TAREA</h2>
+        <% if (error){ %> 
+            <p>
+                <%= mensaje %>
+            </p>
+            <a href="/usuario" class="btn btn-dark btn-block" >Volver a tareas</a>
+        <% } %>
+        <% if (!error){ %>
+            <table class="table text-center table-striped bg-white rounded">
+                    <thead class="table-success">
+                      <tr>
+                        <!-- <th scope="col">ID</th> -->
+                        <th scope="col">TAREA</th>
+                        <th scope="col">AREA</th>
+                        <th scope="col">DESCRIPCION</th>
+                        <th scope="col">ESTADO</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <!-- <th scope="row"><%= tarea.id %></th> -->
+                        <td><%= tarea.tarea %></td>
+                        <td><%= tarea.area %></td>
+                        <td><%= tarea.descripcion %></td>
+                        <td><%= tarea.estado %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+        <% } %>
+    </div>
+
+
+<%- include("template/footer") %>
