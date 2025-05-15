@@ -1,35 +1,97 @@
-<%- include("template/cabecera", {tituloweb: 'Detalle tarea'}) %>
-    <div class="container border border-secondary rounded shadow p-4 my-5 bg-white w-70">
-        <h2>TAREA</h2>
-        <% if (error){ %> 
-            <p>
-                <%= mensaje %>
-            </p>
-            <a href="/usuario" class="btn btn-dark btn-block" >Volver a tareas</a>
-        <% } %>
+<%- include("template/cabecera", {tituloweb: 'Detalle tarea' }) %>
+
+  <div class="container border border-secondary rounded shadow p-4 my-5 bg-white w-80">
+    <h2>EDITAR TAREA</h2>
+    <% if (error){ %>
+      <p>
+        <%= mensaje %>
+      </p>
+      <a href="/usuario" class="btn btn-dark btn-block">Volver a tareas</a>
+      <% } %>
         <% if (!error){ %>
-            <table class="table text-center table-striped bg-white rounded">
-                    <thead class="table-success">
-                      <tr>
-                        <!-- <th scope="col">ID</th> -->
-                        <th scope="col">TAREA</th>
-                        <th scope="col">AREA</th>
-                        <th scope="col">DESCRIPCION</th>
-                        <th scope="col">ESTADO</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <!-- <th scope="row"><%= tarea.id %></th> -->
-                        <td><%= tarea.tarea %></td>
-                        <td><%= tarea.area %></td>
-                        <td><%= tarea.descripcion %></td>
-                        <td><%= tarea.estado %></td>
-                      </tr>
-                    </tbody>
-                  </table>
-        <% } %>
-    </div>
 
+          <form id="formularioEditar" class="mb-4" data-id="<%= tarea.id %>">
+            <input type="text" class="form-control my-2" name="tarea" value="<%= tarea.tarea %>" id="tareaInput">
+            <input type="text" class="form-control my-2" name="area" value="<%= tarea.area %>" id="areaInput">
+            <input type="text" class="form-control my-2" name="descripcion" value="<%= tarea.descripcion %>"
+              id="descripcionInput">
+            <input type="text" class="form-control my-2" name="estado" value="<%= tarea.estado %>" id="estadoInput">
+            <button class="btn btn-warning btn-block" type="submit">Editar</button>
+          </form>
+          <hr>
+          <button class="btn btn-danger btn-sm" id="btnEliminar" data-id="<%= tarea.id %>">Eliminar</button>
+          <% } %>
+  </div>
 
-<%- include("template/footer") %>
+  <%- include("template/footer") %>
+
+    <script>
+      // SELECCIONAMOS EL BOTON DE ELIMINACION EN EL DOM USANDO SU ID
+      const btnEliminar = document.querySelector('#btnEliminar')
+      // AÑADIMOS EL EVENTO DE CLICK AL BOTON ELIMINAR
+      btnEliminar.addEventListener('click', async () => {
+        // OBTNEMOS EL ID DE LA TAREA A ELIMINAR DESDE EL ATRIBUTO "data-id" DEL BOTON
+        const id = btnEliminar.dataset.id
+
+        try {
+          // REALIZAMOS UNA SOLICITTUD "delete" AL SERVIDOR PARA ELIMINAR LA TAREA CON EL "id" CORRESPONDIENTE
+          const data = await fetch(`/usuario/${id}`, {
+            method: 'delete'// ESPECIFICAMOS EL METODO HTTP delete
+          })
+          // CONVERTIMOS LA RESPUESTA A FORMATO JSON
+          const res = await data.json()
+          if (res.estado) {
+            alert("Eliminando tarea")// MOSTRAMOS UN MENSAJE CON "alert()" 
+            window.location.href = '/usuario'; // SI TODO SALIO SE REDIRIJE AL USUARIO A LA VISTA DE LAS TAREAS
+          } else {
+            console.log(res)// SI HAY UN ERROR LO MOSTRAMOS EN LA CONSOLA
+          }
+        } catch (error) {
+          console.log(error)// MOSTRAMOS UN ERRO EN CASO DE QUE OCURRA EN LA EJECUCION
+        }
+      })
+
+      // SELECCIONAMOS EL FORMULARIO DE EDICION EN EL DOCUMENTO
+      const formularioEditar = document.querySelector('#formularioEditar')
+
+      // AGREGAMOS EL EVENTO PARA ESCUCHAR EL ENVIO DEL FORMULARIO
+      formularioEditar.addEventListener('submit', async (e) => {
+
+        // PREVENIMOS EL ENVIO POR DEFECTO DEL FORMULARIO(evita recargar la pagina)
+        e.preventDefault()
+
+        // OBTENEMOS LOS VALORES INGRESADOS EN EL FORMULARIO Y LOS ALMACENAMOS EN VARIABLES
+        const tarea = document.querySelector('#tareaInput').value
+        const area = document.querySelector('#areaInput').value
+        const descripcion = document.querySelector('#descripcionInput').value
+        const estado = document.querySelector('#estadoInput').value
+
+        // OBTENEMOS EL ID DEL USUARIO CON EL ATRIBUTO "data-id" DEL FORMULARIO
+        const id = formularioEditar.dataset.id
+
+        try {
+          // REALIZAMOS LA SOLICITUD HTTP PARA ACTUALIZAR LOS DATOS DE LA TAREA EN EL SERVIDOR
+          const data = await fetch(`/usuario/${id}`, {
+            method: 'put',// METODO HTTP UTILIZADO PARA ACTUALIZAR LA INFORMACION
+            headers: {
+              'Content-Type': 'application/json'// INDICAMOS QUE LOS DATOS ENVIADOS ESTARAN EN FORMATO "JSON"
+            },
+            body: JSON.stringify({ tarea, area, descripcion, estado })// CONVERTIMOS LOS DATOS EN UNA CADENA "JSON"
+          })
+
+          // CONVERTIMOS LA RESPUESTA DEL SERVIDOR EN FORMATO "JSON"
+          const res = await data.json()
+
+          // SI LA ACTUALIZACION FUE EXITOSA
+          if (res.estado) {
+            window.location.href = '/usuario'
+          } else {// EN CASO DE ERROR
+            console.log(res)
+          }
+
+        } catch (error) {// CAPTURAMOS CUALQUIER ERROR QUE PUEDA OCURRIR EN LA CONSULTA
+          console.log(error)
+        }
+      })
+
+    </script>
