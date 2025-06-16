@@ -1,8 +1,9 @@
+// IMPORTAMOS MONGOOSE PARA MANEJAR LA CONEXIÓN Y MODELOS DE LA BASE DE DATOS
 const mongoose = require('mongoose');
-// INSTANCIAMOS "schema" DE MONGOOSE
+// INSTANCIAMOS "Schema" DE MONGOOSE PARA DEFINIR LA ESTRUCTURA DE LOS DATOS
 const Schema = mongoose.Schema;
 
-// SCHEMA DE DONDE VAMOS A RECIBIR LOS DATOS DE LA BASE DE DATOS
+// DEFINIMOS EL ESQUEMA "usuarioSchema" QUE REPRESENTARÁ LA ESTRUCTURA DE LOS DATOS EN LA BASE DE DATOS
 const usuarioSchema = new Schema({
     tarea: {
         type: String
@@ -19,7 +20,7 @@ const usuarioSchema = new Schema({
 })
 // ALMACENAMOS EL MODELO --> PASAMOS LA COLLECTION DE LA BASE DE DATOS Y EL NUEVO SCHEMA
 const Usuario = mongoose.model('tareas', usuarioSchema);
-// EXPORTAMOS EL SCHEMA
+// EXPORTAMOS EL SCHEMA PARA QUE PUEDA SER USADO EN OTRAS PARTES
 module.exports = Usuario;
 
 

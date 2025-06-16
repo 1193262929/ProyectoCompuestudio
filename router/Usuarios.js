@@ -1,11 +1,16 @@
+// IMPORTAMOS EXPRESS PARA MANEJAR LAS RUTAS Y SOLICITUDES HTTP
 const express = require('express');
 // HACEMOS UNA INSTANCIA DE 'router'
 const router = express.Router();
+// IMPORTAMOS EL MODELO "Usuario" PARA INTERACTUAR CON LA BASE DE DATOS
 const Usuario = require('../models/schema')
+
 // RUTA PARA HACER LA CONSULTA A LA BASE DE DATOS Y LA RENDERIZAMOS EN EL ARCHIVO DONDE LA VAMOS A MOSTRAR EN LA VISTA
 router.get('/', async (req, res)=>{
     try{
+        // CONSULTAMOS TODAS LAS TAREAS EN LA BASE DE DATOS
         const arrayUsuariosDB = await Usuario.find()
+         // RENDERIZAMOS LA VISTA "usuario.ejs" PASANDO LOS DATOS OBTENIDOS
         res.render("usuario",{
             arrayUsuarios : arrayUsuariosDB
         })
@@ -14,10 +19,11 @@ router.get('/', async (req, res)=>{
     }
 })
 
-
+// RUTA PARA CREAR UNA NUEVA TAREA EN LA BASE DE DATOS
 router.post('/', async (req, res)=>{
-    const body = req.body
+    const body = req.body// RECIBIMOS LOS DATOS DEL FORMULARIO EN EL CUERPO DE LA SOLICITUD
     try{
+        // CREAMOS UNA NUEVA ENTRADA EN LA BASE DE DATOS USANDO EL MODELO "Usuario"
         await Usuario.create(body)
         res.redirect('/usuario')
 
